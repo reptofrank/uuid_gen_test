@@ -1,5 +1,5 @@
 import os
-import time
+from datetime import datetime
 from uuid import uuid4
 from flask import Flask
 
@@ -16,7 +16,8 @@ def index():
     filepath = os.path.join(os.getcwd(), data_file)
 
     data = file_handler.read_data_file(filepath)
-    now = time.strftime("%Y-%m-%d %H:%M:%S")
+    format = "%Y-%m-%d %H:%M:%S.%f"
+    now = datetime.now().strftime(format)
     new_uuid = uuid4().hex
 
     updated_data = {now: new_uuid, **data}
