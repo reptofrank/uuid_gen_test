@@ -1,5 +1,6 @@
 import json
 
+
 def read_data_file(filepath):
     """
     Reads the content of the file handler passed in,
@@ -13,3 +14,12 @@ def read_data_file(filepath):
             json_content = {}
 
     return json_content
+
+
+def write_data_file(filepath, data):
+    """
+    serialize object passed in as second argument to json then
+    writes to file with path passed in as first argument,
+    """
+    with open(filepath, "w") as fh:
+        json.dump(data, fh)
