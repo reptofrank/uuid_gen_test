@@ -13,11 +13,11 @@ Pytest (for tests)
 
 ### Clone the repository
 
-    git clone https://github.com/reptofrank/uuid_gen
+    git clone https://github.com/reptofrank/uuid_gen_test
 
 ### change into the project folder, create a virtual environment and activate it
 
-    cd uuid_gen
+    cd uuid_gen_test
     python3 -m venv venv
     source venv/bin/activate
 
