@@ -8,6 +8,7 @@ A simple API built in Python (Flask) with a single endpoint that logs requests (
 ### Requirements
 
 Python3.6 and above
+
 Pytest (for tests)
 
 
