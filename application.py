@@ -1,8 +1,11 @@
 import os
 import json
+import time
+from uuid import uuid4
 from flask import Flask
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 
 data_file = "data.json"
 
@@ -10,7 +13,15 @@ data_file = "data.json"
 def index():
     filepath = os.path.join(os.getcwd(), data_file)
 
-    file_content = read_data_file(filepath)
+    data = read_data_file(filepath)
+
+    now = time.strftime("%Y-%m-%d %H:%M:%S")
+    new_uuid = uuid4().hex
+
+    updated_data = {now: new_uuid, **data}
+    print(updated_data)
+    
+    return updated_data
 
 
 def read_data_file(filepath):
