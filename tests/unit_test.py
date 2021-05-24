@@ -2,12 +2,12 @@ import os
 import tempfile
 import pytest
 import json
-from utils import file
+from utils import file_handler
 
 
 def test_read_empty_file():
     fh, filepath = tempfile.mkstemp()
-    data = file.read_data_file(filepath)
+    data = file_handler.read_data_file(filepath)
 
     assert data == {}
 
@@ -20,7 +20,7 @@ def test_read_file_with_json_data():
     with open(filepath, "w") as f:
         f.write('{"name": "Cowrywise"}')
     
-    data = file.read_data_file(filepath)
+    data = file_handler.read_data_file(filepath)
 
     assert data['name'] == "Cowrywise"
 
@@ -33,7 +33,7 @@ def test_read_file_with_invalid_json_data():
     with open(filepath, "w") as f:
         f.write('hello')
     with pytest.raises(json.decoder.JSONDecodeError) as error:
-        data = file.read_data_file(filepath)
+        data = file_handler.read_data_file(filepath)
         assert data['name'] == "Cowrywise"
 
     os.close(fh)
@@ -43,4 +43,4 @@ def test_read_file_with_invalid_json_data():
 def test_file_not_found_exception():
     with pytest.raises(FileNotFoundError) as error:
         filepath = os.path.join(os.path.dirname(__file__), "../notfound.json")
-        data = file.read_data_file(filepath)
+        data = file_handler.read_data_file(filepath)
